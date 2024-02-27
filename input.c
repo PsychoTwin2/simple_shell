@@ -15,7 +15,7 @@ void read_command(char *command, size_t size)
 		}
 		else
 		{
-			_prnt("Error while reading input.\n");
+			perror("fgets");
 			exit(EXIT_FAILURE);
 		}
 	}

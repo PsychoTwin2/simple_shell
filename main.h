@@ -16,5 +16,7 @@ void _prnt(char *text);
 void execute_command(char* command);
 void read_command(char *command, size_t size);
 extern char **environ;
+void process(char *command);
+
 
 #endif
