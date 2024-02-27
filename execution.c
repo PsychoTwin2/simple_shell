@@ -18,14 +18,7 @@ void execute_command(char *command)
 	}
 	else
 	{
-		int status;
-
-		waitpid(child_pid, &status, 0);
-
-		if (WIFEXITED(status) && WEXITSTATUS(status) == EXIT_SUCCESS)
-		{
-			exit(EXIT_SUCCESS);
-		}
+		wait(NULL);
 	}
 }
 /**
@@ -73,4 +66,5 @@ void process(char *command)
 	}
 	execve(full_path, args, envp);
 	perror("execve");
+	exit(EXIT_FAILURE);
 }
