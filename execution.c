@@ -50,11 +50,6 @@ void process(char *command)
 			printf("%s\n", environ[i]);
 		}
 	}
-	else if (strcmp(args[0], "clear") == 0)
-	{
-		system("clear");
-		return;
-	}
 	else if (strcmp(args[0], "exit") == 0)
 		exit(EXIT_SUCCESS);
 	if (args[0][0] == '/')
@@ -64,7 +59,9 @@ void process(char *command)
 		strcpy(full_path, path);
 		strcat(full_path, args[0]);
 	}
-	execve(full_path, args, envp);
-	perror("execve");
-	exit(EXIT_FAILURE);
+	if ((execve(full_path, args, envp)) == -1)
+	{
+		perror("execve");
+		exit(EXIT_FAILURE);
+	}
 }
